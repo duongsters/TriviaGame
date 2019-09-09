@@ -59,73 +59,109 @@ var triviaQ = [{
 
 ]
 
+// ------------start/restart button rendering------------------------------------
 
-        //Start button rendering
+
+        //Start button rendering!
 $("#pressStart").on("click", function(){
+    //the start button will hide on the browser
     $(this).hide();
+    //after the start button is hidden, then the function 'refreshGame' will soon run to start the game up
     refreshGame();
 });
 
-        // Restart button rendering
+        // Restart button rendering!
 $("#pressRestart").on("click", function(){
+    //the restart button is will be hidden right when this function runs so the user doesn't press on it repeatedly
     $(this).hide();
+    //the function to start the game is initalized
     resfreshGame();
 });
+
+// ----------clear Trivia Game questions/answers/messages renderings-------------------------------------------
+
         // clears the Trivia Game by initializing all global variables on the 'Scoreboard Tally Area'
 function resfreshGame() {
     $("#lastMsg").empty();
     $("#correctAnswer").empty();
     $("#incorrectAnswer").empty();
     $("#remainingQ").empty();
-    currentQ = 0;
-    correctAnswer = 0;
-    incorrectAnswer = 0;
-    remainingQ = 0;
+        currentQ = 0;
+        correctAnswer = 0;
+        incorrectAnswer = 0;
+        remainingQ = 0;
     forumulateQ();
 }
-
+        //clears the dynamic class ID elements withing the 'Trivia Answers/Results' portion of the html page
 function forumulateQ() {
+    //empties any values of from the alert messages to the user
     $("#txtMsg").empty();
+    //empties any value of the correct answers count
     $("#rightAnswer").empty();
+    //empties all images 
     $("#imgAnswer").empty();
-    attemptedQ = true;
+        attemptedQ = true;
 }
 
 
 
-//-----creating Questions & Answers rendering-----
+//-----creating Questions & Answers rendering---------------------------------------
 
 $("#currentQ").html("Question #" + (currentQ + 1) + "/" + triviaQ.length);
 $(".question").html("<h2>" + triviaQ[currentQ].question + "</h2>");
+        //created a for loops withing the parameters where the user choice variable 'j' is set 
+        //at the starting index of the array [0]...with the length of the 4 available answers choices
+        //and the count it goes through the array index increment of 1 by going through each index element
     for(var j = 0; j < 4; j++) {
-        //created a local variable 'options' 
-        var options = ("<div>");
-        options.text(triviaQ[currentQ].answerChoices[j]);
-        // created new dynamic variable'array-index' to temporarily hold the user choice answer
-        options.attr({"array-index": j});
-        // created new dynamic variable 'playerChoice' to 
-        options.addClass("playerChoice");
+        //created a local variable 'options' to help create the new dynmical variables 'array-index' & 'playerChoice'
+        //on lines 106 & 109 respectively
+        var options = $("<div>");
+            options.text(triviaQ[currentQ].answerChoices[j]);
+        // created new dynamic div class variable'array-index' to temporarily hold the user choice answer
+            options.attr({"array-index": j});
+        // created new dynamic div class variable 'playerChoice' 
+            options.addClass("playerChoice");
         //appends the userchoice back to the the html ID element 'answerChoices' so the answer is visible on the browser
         $(".answerChoices").append(options);
     }
 
 
-//--------timer countdown rendering-------
-
+//--------time rendering----------------------------------------------------------
+    //'manipulateTime' is a function that runs for the timer countdown when the quesiton for the user for each trivia question
 function manipulateTime () {
     //intially set the timer for the player/user to answer all Trivia Questions at 10 seconds
-    sec = 10;
+        sec = 10;
     //append the user with an alert message of the remaining time by connecting with the dynamic variable 'remainingTime' within index.html
     $("#remainingTime").html("<h3> Time Left: " + sec + "</h3>");
-    attemptedQ = true;
+        attemptedQ = true;
     //sets global variable 'time' to excecute the 'countDown" function within the set time interval of 1 second
-    time = setInterval(countDown, 1000);
+        time = setInterval(countdownTimer, 1000);
+        //after player/user chooses an answer on time, the page will be cleared for the next upcoming question
+        clearAnswerArea();
 }
-
-function countDown() {
-    //decreement the seconds
-    sec--;
-    $("#remainingTime").html("<h3>")
+    //the countdownTimer function is ran when the player/user does NOT answer within the 10 second limit
+function countdownTimer() {
+    //decreement the seconds count
+        sec--;
+    $("#remainingTime").html("<h3> Time Left: " + sec + "</h3>");
+    //this important if loop function runs within the parements when the seconds left for the player/user hits 0
+        if(sec < 1) {
+            //the first thing this function will do is clear the time
+            clearInterval(time);
+            //then return a boolean value of false for their current attempt
+            attemptedQ = false;
+            //finally the function will clear the trivia questions portion area for the next upcoming question for the player/user
+            clearAnswerArea();
+        }
+}
+//clearAnswerArea is important in functioning everytime after the user makes a click answer, this function will empty the gameboard for the next question
+function clearAnswerArea() {
+    //empties the current question variable ID within index.html
+    $("#currentQ").empty();
+    //empties the dynamic class ID 'playerChoice'
+    $(".playerChoice").empty();
+    //empties the current question for the user in the array index
+    $(".question").empty();
 }
 
 //------trivia scoreboard rendering-----
