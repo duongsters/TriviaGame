@@ -1,20 +1,20 @@
-//-------- global variables--------------
+//===========global variables=======================================================
 var correctAnswer;
 var incorrectAnswer;
 var currentQ;
 var attemptedQ;
-var remainingQ;
+var unanswerQ;
 var time;
 var sec;
 var userChoice;
 var txtMsg = {
     correct: "Ding, ding! Correct answer choice!",
     wrong: "Whoops--incorrect answer!",
-    noTime:"AH! Out of time!",
+    timeBreak:"AH! Out of time!",
     lastQ: "You answered all the questions--time to tally up the scores"
 }
 
-// ----------questions/answers array index---------
+//===========questions/answers array index=============================================================================
 var triviaQ = [{
     question: "What year did Volkswagen introduce the Golf GTI model?",
     answerChoices: ["1976", "1965", ],
@@ -59,7 +59,7 @@ var triviaQ = [{
 
 ]
 
-// ------------start/restart button rendering------------------------------------
+//===========Start/restart button rendering======================================================================================
 
 
         //Start button rendering!
@@ -78,18 +78,18 @@ $("#pressRestart").on("click", function(){
     resfreshGame();
 });
 
-// ----------clear Trivia Game questions/answers/messages renderings-------------------------------------------
+//============clear Trivia Game questions/answers/messages renderings===========================================================
 
         // clears the Trivia Game by initializing all global variables on the 'Scoreboard Tally Area'
 function resfreshGame() {
     $("#lastMsg").empty();
     $("#correctAnswer").empty();
     $("#incorrectAnswer").empty();
-    $("#remainingQ").empty();
+    $("#unanswerQ").empty();
         currentQ = 0;
         correctAnswer = 0;
         incorrectAnswer = 0;
-        remainingQ = 0;
+        unanswerQ = 0;
     forumulateQ();
 }
         //clears the dynamic class ID elements withing the 'Trivia Answers/Results' portion of the html page
@@ -105,7 +105,7 @@ function forumulateQ() {
 
 
 
-//-----creating Questions & Answers rendering---------------------------------------
+//==========creating Questions & Answers rendering===============================================================================
 
 $("#currentQ").html("Question #" + (currentQ + 1) + "/" + triviaQ.length);
 $(".question").html("<h2>" + triviaQ[currentQ].question + "</h2>");
@@ -126,7 +126,7 @@ $(".question").html("<h2>" + triviaQ[currentQ].question + "</h2>");
     }
 
 
-//--------time rendering----------------------------------------------------------
+//=============time rendering========================================================================================
     //'manipulateTime' is a function that runs for the timer countdown when the quesiton for the user for each trivia question
 function manipulateTime () {
     //intially set the timer for the player/user to answer all Trivia Questions at 10 seconds
@@ -154,7 +154,7 @@ function countdownTimer() {
             clearAnswerArea();
         }
 }
-//clearAnswerArea is important in functioning everytime after the user makes a click answer, this function will empty the gameboard for the next question
+    //clearAnswerArea is important in functioning everytime after the user makes a click answer, this function will empty the gameboard for the next question
 function clearAnswerArea() {
     //empties the current question variable ID within index.html
     $("#currentQ").empty();
@@ -164,10 +164,41 @@ function clearAnswerArea() {
     $(".question").empty();
 }
 
-//------trivia scoreboard rendering-----
+//=========Correct/Incorrect/Unanswered questions rendering======================================================
+
+var rightMsg = triviaQ[currentQ].answerChoices[triviaQ[currentQ].answer];
+var rightArrList = triviaQ[currentQ].answer;
+
+    if((userChoice == rightArrList) && (attemptedQ == true)) {
+        correctAnswer++;
+        //directs the 'correct' message to the user within the dynamic class ID "txtMsg" within index.html file
+        $("#txtMsg").html(txtMsg.correct);
+    }
+        else if ((userChoice != rightArrList) && (attemptedQ == true)) {
+            incorrectAnswer++;
+        $("#txtMsg").html(txtMsg.wrong);
+        $("#rightAnswer").html("Incorrect! The answer is: " + rightMsg);
+        attemptedQ = true;
+        }
+        else {
+            unanswerQ++;
+        $("#txtMsg").html(txtMsg.timeBreak);
+        $("#rightAnswer").html("Time's up! The answer is: " + rightMsg);
+        attemptedQ = true;
+        }
 
 
 
+
+
+
+//=========trivia scoreboard rendering========================================================================
+
+
+
+    if(currentQ == (triviaQ.length - 1)) {
+        setTimeout()
+    }
 
 
 
