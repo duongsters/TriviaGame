@@ -7,6 +7,7 @@ var unanswerQ;
 var time;
 var sec;
 var userChoice;
+var graphicAnswer = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"];
 var txtMsg = {
     correct: "Ding, ding! Correct answer choice!",
     wrong: "Whoops--incorrect answer!",
@@ -14,10 +15,11 @@ var txtMsg = {
     lastQ: "You answered all the questions--time to tally up the scores"
 }
 
+
 //===========questions/answers array index=============================================================================
 var triviaQ = [{
     question: "What year did Volkswagen introduce the Golf GTI model?",
-    answerChoices: ["1976", "1965", ],
+    answerChoices: ["1976", "1965", "1965", "1979"],
     answer: 0
 },{
     question: "The original Legoland opened in which country in 1968?",
@@ -165,12 +167,14 @@ function clearAnswerArea() {
 }
 
 //=========Correct/Incorrect/Unanswered questions rendering======================================================
-
+        //created the variables to output the right answer for the specific question  
 var rightMsg = triviaQ[currentQ].answerChoices[triviaQ[currentQ].answer];
 var rightArrList = triviaQ[currentQ].answer;
-
-    if((userChoice == rightArrList) && (attemptedQ == true)) {
-        correctAnswer++;
+        $("#imgAnswer").html("<img src = 'assets/images/"+ graphicAnswer[currentQ] +".gif' width = '400px'>");
+        //created an if else loop with the parameters if player/user's choice is equal to the current right answer AND there are more questions left, 
+    if((userChoice == rightArrList) && (unanswerQ == true)) {
+        //then, increment the number of correctAnswers
+            correctAnswer++;
         //directs the 'correct' message to the user within the dynamic class ID "txtMsg" within index.html file
         $("#txtMsg").html(txtMsg.correct);
     }
@@ -178,13 +182,13 @@ var rightArrList = triviaQ[currentQ].answer;
             incorrectAnswer++;
         $("#txtMsg").html(txtMsg.wrong);
         $("#rightAnswer").html("Incorrect! The answer is: " + rightMsg);
-        attemptedQ = true;
+            attemptedQ = true;
         }
         else {
             unanswerQ++;
         $("#txtMsg").html(txtMsg.timeBreak);
         $("#rightAnswer").html("Time's up! The answer is: " + rightMsg);
-        attemptedQ = true;
+            attemptedQ = true;
         }
 
 
@@ -192,15 +196,18 @@ var rightArrList = triviaQ[currentQ].answer;
 
 
 
-//=========trivia scoreboard rendering========================================================================
+//=========trivia scoreTallyUp portion area rendering========================================================================
 
-
+    //created and if else loop function that uses the setTimeout method in creating the time interval setting placed after the correct answer has been been
+    // outputed on the browser to when it slides to the next question
 
     if(currentQ == (triviaQ.length - 1)) {
         setTimeout()
     }
 
 
+    //scoreTallyUp runs at the end of the trivia once all 10 questions have been ran, this function will then run
+function scoreTallyUp () {
 
-
+}
 
