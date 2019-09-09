@@ -63,7 +63,7 @@ var triviaQ = [{
 
 //===========Start/restart button rendering======================================================================================
         //Start button rendering!
-$("#pressStart").on("click", function(){
+$('#pressStart').on('click', function(){
     //the start button will hide on the browser
     $(this).hide();
     //after the start button is hidden, then the function 'refreshGame' will soon run to start the game up
@@ -71,7 +71,7 @@ $("#pressStart").on("click", function(){
 });
 
         // Restart button rendering!
-$("#pressRestart").on("click", function(){
+$('#pressRestart').on('click', function(){
     //the restart button is will be hidden right when this function runs so the user doesn't press on it repeatedly
     $(this).hide();
     //the function to start the game is initalized
@@ -82,7 +82,7 @@ $("#pressRestart").on("click", function(){
 
 //============clear Trivia Game questions/answers/messages renderings===========================================================
         // clears the Trivia Game by initializing all global variables on the 'Scoreboard Tally Area'
-function resfreshGame() {
+function refreshGame() {
     $("#lastMsg").empty();
     $("#correctAnswer").empty();
     $("#incorrectAnswer").empty();
@@ -102,14 +102,11 @@ function forumulateQ() {
     //empties all images 
         $("#imgAnswer").empty();
         attemptedQ = true;
-}
-
-
 
 //==========creating Questions & Answers rendering===============================================================================
 
 $("#currentQ").html("Question #" + (currentQ + 1) + "/" + triviaQ.length);
-$(".question").html("<h2>" + triviaQ[currentQ].question + "</h2>");
+$('.question').html("<h2>" + triviaQ[currentQ].question + "</h2>");
         //created a for loops withing the parameters where the user choice variable 'j' is set 
         //at the starting index of the array [0]...with the length of the 4 available answers choices
         //and the count it goes through the array index increment of 1 by going through each index element
@@ -120,12 +117,20 @@ $(".question").html("<h2>" + triviaQ[currentQ].question + "</h2>");
                 options.text(triviaQ[currentQ].answerChoices[j]);
         // created new dynamic div class variable'array-index' to temporarily hold the user choice answer
                 options.attr({"array-index": j});
-        // created new dynamic div class variable 'playerChoice' 
+        // created new dynamic div class 'playerChoice' 
                 options.addClass("playerChoice");
         //appends the userchoice back to the the html ID element 'answerChoices' so the answer is visible on the browser
         $(".answerChoices").append(options);
     }
 
+        manipulateTime();
+        $(".playerChoice").on("click", function(){
+            userChoice = $(this).data('index');
+        clearInterval(time);
+        clearAnswerArea();
+    });
+
+}
 
 //=============time rendering========================================================================================
     //'manipulateTime' is a function that runs for the timer countdown when the quesiton for the user for each trivia question
@@ -137,8 +142,6 @@ function manipulateTime () {
                 attemptedQ = true;
     //sets global variable 'time' to excecute the 'countDown" function within the set time interval of 1 second
                 time = setInterval(countdownTimer, 1000);
-        //after player/user chooses an answer on time, the page will be cleared for the next upcoming question
-                clearAnswerArea();
 }
 
 
@@ -171,7 +174,7 @@ function clearAnswerArea() {
         //created the variables to output the right answer for the specific question  
 var rightMsg = triviaQ[currentQ].answerChoices[triviaQ[currentQ].answer];
 var rightArrList = triviaQ[currentQ].answer;
-        $("#imgAnswer").html("<img src = 'assets/images/"+ graphicAnswer[currentQ] +".gif' width = '400px'>");
+        $("#imgAnswer").html("<img src = 'assets/images/"+ graphicAnswer[currentQ] +".gif' width = '350px'>");
         //created an if else loop with the parameters if player/user's choice is equal to the current right answer AND there are more questions left, 
     if((userChoice == rightArrList) && (unanswerQ == true)) {
         //then, increment the number of correctAnswers
