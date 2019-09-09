@@ -1,7 +1,8 @@
 //-------- global variables--------------
-var correctAnswer = 0;
-var incorrectAnswer = 0;
+var correctAnswer;
+var incorrectAnswer;
 var currentQ;
+var attemptedQ;
 var remainingQ;
 var time;
 var sec;
@@ -59,22 +60,73 @@ var triviaQ = [{
 ]
 
 
-// -------button click DOM-------------
+        //Start button rendering
+$("#pressStart").on("click", function(){
+    $(this).hide();
+    refreshGame();
+});
 
+        // Restart button rendering
+$("#pressRestart").on("click", function(){
+    $(this).hide();
+    resfreshGame();
+});
+        // clears the Trivia Game by initializing all global variables on the 'Scoreboard Tally Area'
+function resfreshGame() {
+    $("#lastMsg").empty();
+    $("#correctAnswer").empty();
+    $("#incorrectAnswer").empty();
+    $("#remainingQ").empty();
+    currentQ = 0;
+    correctAnswer = 0;
+    incorrectAnswer = 0;
+    remainingQ = 0;
+    forumulateQ();
+}
 
-
-//--------restart/refresh TriviaGame rendering------
+function forumulateQ() {
+    $("#txtMsg").empty();
+    $("#rightAnswer").empty();
+    $("#imgAnswer").empty();
+    attemptedQ = true;
+}
 
 
 
 //-----creating Questions & Answers rendering-----
 
-
+$("#currentQ").html("Question #" + (currentQ + 1) + "/" + triviaQ.length);
+$(".question").html("<h2>" + triviaQ[currentQ].question + "</h2>");
+    for(var j = 0; j < 4; j++) {
+        //created a local variable 'options' 
+        var options = ("<div>");
+        options.text(triviaQ[currentQ].answerChoices[j]);
+        // created new dynamic variable'array-index' to temporarily hold the user choice answer
+        options.attr({"array-index": j});
+        // created new dynamic variable 'playerChoice' to 
+        options.addClass("playerChoice");
+        //appends the userchoice back to the the html ID element 'answerChoices' so the answer is visible on the browser
+        $(".answerChoices").append(options);
+    }
 
 
 //--------timer countdown rendering-------
 
+function manipulateTime () {
+    //intially set the timer for the player/user to answer all Trivia Questions at 10 seconds
+    sec = 10;
+    //append the user with an alert message of the remaining time by connecting with the dynamic variable 'remainingTime' within index.html
+    $("#remainingTime").html("<h3> Time Left: " + sec + "</h3>");
+    attemptedQ = true;
+    //sets global variable 'time' to excecute the 'countDown" function within the set time interval of 1 second
+    time = setInterval(countDown, 1000);
+}
 
+function countDown() {
+    //decreement the seconds
+    sec--;
+    $("#remainingTime").html("<h3>")
+}
 
 //------trivia scoreboard rendering-----
 
