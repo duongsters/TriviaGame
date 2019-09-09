@@ -15,20 +15,42 @@
 <body>
 
 <!-- main div mainContainer that holds everything -->
+<div class="mainContainer">
 
 <!-- questions slide area-->
+        <div class=row>
+            <div class="col-md-2"></div>
+                <div class="col-md-8">
 
-<!-- answers slide area -->
+            <!-- start button -->
+            <button class="btn btn-warning" id="pressStart">Start</button>
 
-<!-- scoreboard area -->
+            <!-- Trivia Questions Area -->
+                    <div id=remainingTime></div>
+                    <div id=currentQ></div>
+                    <div id="question"></div>
+                    <div id="answerChoices"></div>
+
+            <!-- Trivia Answers Results Area -->
+                    <div id=txtMsg></div>
+                    <div id=rightAnswer></div>
+                    <div id=imgAnswer></div>
+
+            <!-- Scoreboard Tally Area-->
+                    <div id=lastMsg></div>
+                    <div id=correctAnswer></div>
+                    <div id=incorrectAnswer></div>
+                    <div id=remainingQ></div>
+
+            <!-- Restart Trivia Game Button -->
+                        <div id="pressRestart"></div>
+
+        </div>
+    </div>
+</div>
 
 
-
-
-
-
-
-
+<!-- Connection to Javascript and jQuery files -->
         <script type="text/javascript" src="assets/javascript/app.js"></script>    
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
