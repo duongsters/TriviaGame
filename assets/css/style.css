@@ -1,4 +1,262 @@
+
+html { 
+    height: 100%;
+  }
+
 body{
+     background-color: #000000;
+   padding: 0px;
+   margin: 0px;
+   height: fit-content;
+   height: 100%;
+ }
+
+#gradient
+{
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
 
 }
 
+.mainContainer {
+    height: 10em;
+    position: relative}
+
+
+
+h3 {
+    /* random trivia game header styling */
+    font-size: 80px;
+    font-family: 'Allerta Stencil';
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-align: center;
+}
+
+
+
+h1{
+    font-family: 'Allerta Stencil';
+    background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+    background: black;
+}
+
+.row h2 {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#remainingTime {
+    margin: 0 auto;
+    display: block;
+    text-align: center;}
+
+.btn-warning {
+    background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 100%);
+    position: relative;
+	padding: 10px 150px 10px 150px;
+    display: inline-block;
+	border-radius: 20px;
+    font-size: 50px;
+    width: 40%;
+margin-left: 30%;
+margin-right: 30%
+}
+
+.reset {
+    background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 100%);
+    position: relative;
+	padding: 10px 150px 10px 150px;
+    display: inline-block;
+	border-radius: 20px;
+    font-size: 25px;
+}
+
+.playerChoice {
+    font-size: 25px;
+}
+
+.playerChoice:hover {
+    background-color: black;
+    color: yellow;
+    cursor: pointer;
+    border-radius: inherit;
+}
+  
+ 
+.col-md-6 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.outer {
+    padding-top: 20px;
+    width: 850px;
+    margin: auto;
+    display: block;
+    /* set the font color here as a background color, in this case black
+    background-color: black; */
+   
+  }
+  
+  .bg {
+    text-align: center;
+    width: 0%;
+    transition: all 0.6s ease-out;
+    background: #3ebac6 background: -moz-linear-gradient(left, #3ebac6 0%, #8b539e 50%, #e53782 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, #3ebac6), color-stop(50%, #8b539e), color-stop(100%, #e53782));
+    background: -webkit-linear-gradient(left, #3ebac6 0%, #8b539e 50%, #e53782 100%);
+    background: -o-linear-gradient(left, #3ebac6 0%, #8b539e 50%, #e53782 100%);
+    background: -ms-linear-gradient(left, #3ebac6 0%, #8b539e 50%, #e53782 100%);
+    background: linear-gradient(to right, #3ebac6 0%, #8b539e 50%, #e53782 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3ebac6', endColorstr='#e53782', GradientType=1);
+  }
+  
+  .inner {
+    animation: colorchange 50s; /* animation-name followed by duration in seconds*/
+    /* you could also use milliseconds (ms) or something like 2.5s */
+ -webkit-animation: colorchange 50s; /* Chrome and Safari */
+    width: 850px;}
+
+@keyframes colorchange
+{
+ 0%   {background: red;}
+ 25%  {background: yellow;}
+ 50%  {background: blue;}
+ 75%  {background: green;}
+ 100% {background: red;}
+}
+
+@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+{
+ 0%   {background: red;}
+ 25%  {background: yellow;}
+ 50%  {background: blue;}
+ 75%  {background: green;}
+ 100% {background: red;}
+}
+    
+  }
+  
+  .answerChoices {
+    color: black;
+    font-size: 50px;
+    letter-spacing: 5px;
+  }
+  
+  outer:hover .bg {
+    width: 100%;
+  }
+
+  #imgAnswer{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ 
+
+/* .answerChoices {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+} */
+
+#currentQ { 
+    font-size: 25px;
+    text-align: center;
+    color: black;
+    te
+    /* questions out of 10 head */
+}
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:200');
+#box {
+    display: inline;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-family: 'Raleway';
+    font-size: 2.5rem;
+    box-sizing: border-box;
+  }
+  .gradient-border {
+    --borderWidth: 3px;
+    background: #1D1F20;
+    position: relative;
+    border-radius: var(--borderWidth);
+  }
+
+  .scoreTallyUp {
+    background: linear-gradient(to right, red, purple);
+  }
+
+  #txtMsg {
+      font-size: 25px;
+      font-family: cursive;
+      text-align: center;      
+
+  }
+  #txtMsg .unanswerQ {
+    font-size: 1px;
+  }
+
+  .data-index{
+        font-size: 15px;
+  }
+
+  #rightAnswer {
+      font-size: 35px;
+      font-weight: bolder;
+      font-family: cursive;
+      text-align: center;
+      color: red;
+      background-color: black;
+  }
+
+  #wrongAnswer {
+    font-size: 25px;
+    font-family: cursive;
+    text-align: center;
+  }
+
+  #lastMsg{
+    color: black;
+  }
+
+  #correctAnswer {
+      color: #2f2;
+  }
+
+  #incorrectAnswers {
+      color: red;
+  }
+
+  @media (max-width: 767px) {
+    .input-position input {
+      margin: 0 auto;
+      display: block;
+    }
+  }

@@ -8,28 +8,40 @@
     <title>Random Trivia Game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
 </head>
 
 <body>
-
+<!-- div id 'gradient' is made to manipulate the animated gradient animated background -->
+<div id="gradient">
 <!-- main div mainContainer that holds the entire trivia game portion areas: question, answers and scoretallyup---->
 <div class="mainContainer">
 
+<h3>Random Trivia Game</h3>
 <!-- questions slide area-->
         <div class=row>
-            <div class="col-md-12"></div>
+           
+            <!-- Bootstrap method start button -->
+            <button class="btn btn-warning" id='pressStart'>Start</button>   
+            <div class="col-md-12 input-position">
+                             <div id=remainingTime></div>
+            </div>
+
                 <div class="col-md-6">
 
-            <!-- Bootstrap start button -->
-            <button class="btn btn-warning" id='pressStart'>Start</button>
-
             <!-- Trivia Questions Area -->
-                    <div id=remainingTime></div>
+<div class="gradient-border" id="box">
                     <div id=currentQ></div>
-                    <div class='question'></div>
-                    <div class=answerChoices></div>
+                    <div class="question"></div>
+        <div class="outer">
+                <div class="bg">
+                        <div class="inner">
+                    <div class="answerChoices"></div>
+                    </div>
+                </div>
+        </div>
 
             <!-- Trivia Answers Results Area -->
                     <div id=txtMsg></div>
@@ -37,18 +49,21 @@
                     <div id=imgAnswer></div>
 
             <!-- scoreTallyUp portion Area-->
+            <div class="module-border-wrap" id="module">
                     <div id=lastMsg></div>
                     <div id=correctAnswer></div>
-                    <div id=incorrectAnswer></div>
+                    <div id=incorrectAnswers></div>
                     <div id=unanswerQ></div>
-
+                </div>
+</div>
             <!-- Restart Trivia Game Button -->
-                    <div id='pressRestart'></div>
+                    <div id="pressRestart"></div>
 
         </div>
     </div>
-</div>
 
+</div>
+</div>
 <!-- Connection to Javascript and jQuery files -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
